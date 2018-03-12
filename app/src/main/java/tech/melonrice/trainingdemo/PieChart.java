@@ -529,11 +529,13 @@ public class PieChart extends ViewGroup {
 
         // Figure out how big we can make the pie.
         float diameter = Math.min(ww, hh);
+        //从坐标原点开始创建一个矩形边框，长diameter，宽diameter
         mPieBounds = new RectF(
                 0.0f,
                 0.0f,
                 diameter,
                 diameter);
+        //根据左边距和上边距将矩形边框移动到相应位置
         mPieBounds.offsetTo(getPaddingLeft(), getPaddingTop());
 
         mPointerY = mTextY - (mTextHeight / 2.0f);
@@ -647,6 +649,7 @@ public class PieChart extends ViewGroup {
     private void init() {
         // Force the background to software rendering because otherwise the Blur
         // filter won't work.
+        //这里关闭硬件加速，否则BlurMaskFilter无效
         setLayerToSW(this);
 
         // Set up the paint for the label text
@@ -659,24 +662,30 @@ public class PieChart extends ViewGroup {
         }
 
         // Set up the paint for the pie slices
+        //饼图的画笔
         mPiePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPiePaint.setStyle(Paint.Style.FILL);
         mPiePaint.setTextSize(mTextHeight);
 
         // Set up the paint for the shadow
+        //阴影的画笔
         mShadowPaint = new Paint(0);
         mShadowPaint.setColor(0xff101010);
+        //以模糊遮罩滤镜方式设置滤镜
         mShadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
 
         // Add a child view to draw the pie. Putting this in a child view
         // makes it possible to draw it on a separate hardware layer that rotates
         // independently
+        //饼图的view
         mPieView = new PieView(getContext());
         addView(mPieView);
+        //设置旋转角度
         mPieView.rotateTo(mPieRotation);
 
         // The pointer doesn't need hardware acceleration, but in order to show up
         // in front of the pie it also needs to be on a separate view.
+        //圆点的view
         mPointerView = new PointerView(getContext());
         addView(mPointerView);
 
@@ -692,6 +701,7 @@ public class PieChart extends ViewGroup {
                 }
 
                 public void onAnimationEnd(Animator animator) {
+                    //关闭硬件加速
                     mPieView.decelerate();
                 }
 
