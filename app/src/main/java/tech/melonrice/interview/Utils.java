@@ -2,8 +2,7 @@ package tech.melonrice.interview;
 
 /**
  * 实现以下三个method的功能
- * 不可添加额外的class或者method进行调试
- * 不可进行Debug调试以及print，log打印日志，可以在草稿上演算
+ * 在method内完成所有代码，不可添加额外的class或者method进行调试
  */
 
 public class Utils {
