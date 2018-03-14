@@ -23,7 +23,7 @@ public class Utils {
     }
 
     /**
-     * 使用任何一种排序算法排列输入的整数数组，不可使用java sort api
+     * 使用任何一种排序算法，从小到大排列输入的整数数组，不可使用java sort api
      */
     public static int[] customSort(int[] sort) {
         //todo
